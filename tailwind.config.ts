@@ -110,7 +110,10 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'float': 'float 6s ease-in-out infinite',
 				'glow': 'glow 2s ease-in-out infinite alternate',
-				'fade-in-up': 'fade-in-up 0.8s ease-out'
+				'fade-in-up': 'fade-in-up 0.8s ease-out',
+				'slide-in-right': 'slideInFromRight 0.6s ease-out',
+				'slide-in-left': 'slideInFromLeft 0.6s ease-out',
+				'morph-glow': 'morphGlow 3s ease-in-out infinite'
 			},
 			backgroundImage: {
 				'gradient-primary': 'var(--gradient-primary)',

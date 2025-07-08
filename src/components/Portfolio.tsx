@@ -3,6 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import emailjs from '@emailjs/browser';
+import ThemeToggle from "./ThemeToggle";
 import profileImage from "@/assets/profile-image.jpg";
 
 const Portfolio = () => {
@@ -11,6 +14,8 @@ const Portfolio = () => {
     email: "",
     message: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -19,10 +24,45 @@ const Portfolio = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Handle form submission here
+    setIsSubmitting(true);
+
+    try {
+      // Initialize EmailJS (replace with your actual service ID, template ID, and public key)
+      await emailjs.send(
+        'service_your_service_id', // Replace with your EmailJS service ID
+        'template_your_template_id', // Replace with your EmailJS template ID
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_name: 'John Developer', // Your name
+        },
+        'your_public_key' // Replace with your EmailJS public key
+      );
+
+      toast({
+        title: "Message sent successfully!",
+        description: "Thanks for reaching out. I'll get back to you soon.",
+      });
+
+      // Clear form
+      setFormData({
+        name: "",
+        email: "",
+        message: ""
+      });
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      toast({
+        title: "Failed to send message",
+        description: "Please try again or contact me directly via email.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const techStack = [
@@ -59,15 +99,30 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 glass border-b border-white/10">
+      <nav className="fixed top-0 w-full z-50 glass border-b border-white/10 backdrop-blur-lg transition-all duration-300">
         <div className="container mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
-            <div className="text-xl font-bold gradient-text">Portfolio</div>
-            <div className="hidden md:flex space-x-8">
-              <a href="#home" className="text-foreground/80 hover:text-primary transition-colors">Home</a>
-              <a href="#about" className="text-foreground/80 hover:text-primary transition-colors">About</a>
-              <a href="#projects" className="text-foreground/80 hover:text-primary transition-colors">Projects</a>
-              <a href="#contact" className="text-foreground/80 hover:text-primary transition-colors">Contact</a>
+            <div className="text-xl font-bold gradient-text animate-morph-glow">Portfolio</div>
+            <div className="flex items-center space-x-8">
+              <div className="hidden md:flex space-x-8">
+                <a href="#home" className="text-foreground/80 hover:text-primary transition-all duration-300 hover:scale-110 relative group">
+                  Home
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#about" className="text-foreground/80 hover:text-primary transition-all duration-300 hover:scale-110 relative group">
+                  About
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#projects" className="text-foreground/80 hover:text-primary transition-all duration-300 hover:scale-110 relative group">
+                  Projects
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#contact" className="text-foreground/80 hover:text-primary transition-all duration-300 hover:scale-110 relative group">
+                  Contact
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                </a>
+              </div>
+              <ThemeToggle />
             </div>
           </div>
         </div>
@@ -89,21 +144,23 @@ const Portfolio = () => {
             <p className="text-xl md:text-2xl text-foreground/80 mb-8 max-w-2xl mx-auto">
               Full Stack Developer crafting modern web experiences with passion and precision
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-in-left">
               <Button 
                 size="lg" 
-                className="glass-strong glass-hover text-lg px-8 py-3 bg-primary/20 hover:bg-primary/30 border-primary/30"
+                className="glass-strong glass-hover text-lg px-8 py-3 bg-primary/20 hover:bg-primary/30 border-primary/30 hover:scale-105 transition-all duration-300 group relative overflow-hidden"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({behavior: 'smooth'})}
               >
-                Get In Touch
+                <span className="relative z-10">Get In Touch</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
               </Button>
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="glass glass-hover text-lg px-8 py-3 border-white/20 hover:bg-white/10"
+                className="glass glass-hover text-lg px-8 py-3 border-white/20 hover:bg-white/10 hover:scale-105 transition-all duration-300 group relative overflow-hidden"
                 onClick={() => document.getElementById('projects')?.scrollIntoView({behavior: 'smooth'})}
               >
-                View Projects
+                <span className="relative z-10">View Projects</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/0 via-accent/30 to-accent/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
               </Button>
             </div>
           </div>
@@ -123,39 +180,41 @@ const Portfolio = () => {
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               {/* Profile Image */}
-              <div className="flex justify-center">
-                <div className="neu neu-hover rounded-3xl p-6 animate-scale-in">
+              <div className="flex justify-center animate-slide-in-left">
+                <div className="neu neu-hover rounded-3xl p-6 animate-scale-in hover:rotate-1 transition-all duration-500 group">
                   <img 
                     src={profileImage} 
                     alt="Profile" 
-                    className="w-80 h-80 object-cover rounded-2xl"
+                    className="w-80 h-80 object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500"
                   />
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-primary/20 via-transparent to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </div>
               </div>
 
               {/* About Content */}
-              <div className="space-y-6">
-                <Card className="glass glass-hover p-6 border-white/10">
-                  <h3 className="text-2xl font-semibold mb-4 text-primary">Who I Am</h3>
-                  <p className="text-foreground/80 leading-relaxed mb-4">
+              <div className="space-y-6 animate-slide-in-right">
+                <Card className="glass glass-hover p-6 border-white/10 hover:border-primary/30 transition-all duration-500">
+                  <h3 className="text-2xl font-semibold mb-4 text-primary animate-morph-glow">Who I Am</h3>
+                  <p className="text-foreground/80 leading-relaxed mb-4 hover:text-foreground transition-colors duration-300">
                     I'm a passionate full-stack developer with over 3 years of experience creating 
                     digital solutions that make a difference. I specialize in React, TypeScript, 
                     and Node.js, with a keen eye for modern UI/UX design.
                   </p>
-                  <p className="text-foreground/80 leading-relaxed">
+                  <p className="text-foreground/80 leading-relaxed hover:text-foreground transition-colors duration-300">
                     When I'm not coding, you'll find me exploring new technologies, contributing 
                     to open source projects, or sharing knowledge with the developer community.
                   </p>
                 </Card>
 
                 {/* Tech Stack */}
-                <Card className="glass glass-hover p-6 border-white/10">
-                  <h3 className="text-2xl font-semibold mb-4 text-secondary">Tech Stack</h3>
+                <Card className="glass glass-hover p-6 border-white/10 hover:border-secondary/30 transition-all duration-500">
+                  <h3 className="text-2xl font-semibold mb-4 text-secondary animate-morph-glow">Tech Stack</h3>
                   <div className="flex flex-wrap gap-3">
-                    {techStack.map((tech) => (
+                    {techStack.map((tech, index) => (
                       <span 
                         key={tech}
-                        className="neu px-4 py-2 rounded-xl text-sm font-medium hover:scale-105 transition-transform"
+                        className="neu px-4 py-2 rounded-xl text-sm font-medium hover:scale-110 hover:rotate-2 transition-all duration-300 cursor-pointer hover:bg-primary/10"
+                        style={{ animationDelay: `${index * 0.1}s` }}
                       >
                         {tech}
                       </span>
@@ -314,9 +373,13 @@ const Portfolio = () => {
                   <Button 
                     type="submit"
                     size="lg"
-                    className="w-full glass-strong glass-hover bg-primary/20 hover:bg-primary/30 border-primary/30"
+                    disabled={isSubmitting}
+                    className="w-full glass-strong glass-hover bg-primary/20 hover:bg-primary/30 border-primary/30 hover:scale-105 transition-all duration-300 group relative overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Send Message
+                    <span className="relative z-10">
+                      {isSubmitting ? "Sending..." : "Send Message"}
+                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                   </Button>
                 </form>
               </Card>
