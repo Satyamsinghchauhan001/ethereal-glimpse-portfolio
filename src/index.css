@@ -48,15 +48,28 @@ All colors MUST be HSL for proper theme integration.
     --glass-bg: 255 255 255 / 0.1;
     --glass-border: 255 255 255 / 0.2;
     --glass-blur: 16px;
-    
+
     /* Light mode neumorphism shadows */
-    --neu-shadow-light: 255 255 255;
-    --neu-shadow-dark: 210 40% 85%;
-    
+    /* --neu-shadow-light: 255 255 255;
+    --neu-shadow-dark: 210 40% 85%; */
+
     /* Light mode gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(260 60% 65%));
-    --gradient-glass: linear-gradient(135deg, hsl(255 255 255 / 0.1), hsl(255 255 255 / 0.05));
-    --gradient-hero: linear-gradient(135deg, hsl(210 40% 98%), hsl(220 40% 96%), hsl(230 40% 94%));
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(217 91% 60%),
+      hsl(260 60% 65%)
+    );
+    --gradient-glass: linear-gradient(
+      135deg,
+      hsl(255 255 255 / 0.1),
+      hsl(255 255 255 / 0.05)
+    );
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(210 40% 98%),
+      hsl(220 40% 96%),
+      hsl(230 40% 94%)
+    );
 
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -102,15 +115,24 @@ All colors MUST be HSL for proper theme integration.
     --glass-bg: 240 25% 15% / 0.1;
     --glass-border: 255 255 255 / 0.1;
     --glass-blur: 16px;
-    
-    /* Dark mode neumorphism shadows */
-    --neu-shadow-light: 240 25% 25%;
-    --neu-shadow-dark: 240 25% 5%;
-    
+
     /* Dark mode gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(260 60% 65%));
-    --gradient-glass: linear-gradient(135deg, hsl(240 25% 15% / 0.1), hsl(240 25% 25% / 0.05));
-    --gradient-hero: linear-gradient(135deg, hsl(240 25% 8%), hsl(260 25% 12%), hsl(217 25% 10%));
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(217 91% 60%),
+      hsl(260 60% 65%)
+    );
+    --gradient-glass: linear-gradient(
+      135deg,
+      hsl(240 25% 15% / 0.1),
+      hsl(240 25% 25% / 0.05)
+    );
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(240 25% 8%),
+      hsl(260 25% 12%),
+      hsl(217 25% 10%)
+    );
 
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
@@ -129,7 +151,7 @@ All colors MUST be HSL for proper theme integration.
   }
 
   body {
-    @apply bg-background text-foreground overflow-x-hidden transition-colors duration-500;
+    @apply bg-background text-foreground overflow-x-hidden transition-colors duration-100;
     background: var(--gradient-hero);
     min-height: 100vh;
   }
@@ -147,6 +169,11 @@ All colors MUST be HSL for proper theme integration.
     border: 1px solid hsl(var(--glass-border));
   }
 
+  /* Hover effects */
+  .glass-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
   .glass-strong {
     background: hsl(240 25% 15% / 0.2);
     backdrop-filter: blur(20px);
@@ -155,39 +182,16 @@ All colors MUST be HSL for proper theme integration.
 
   /* Neumorphism utilities */
   .neu {
-    background: hsl(var(--muted));
-    box-shadow: 
-      8px 8px 16px hsl(var(--neu-shadow-dark)),
-      -8px -8px 16px hsl(var(--neu-shadow-light));
-  }
-
-  .neu-inset {
-    background: hsl(var(--muted));
-    box-shadow: 
-      inset 6px 6px 12px hsl(var(--neu-shadow-dark)),
-      inset -6px -6px 12px hsl(var(--neu-shadow-light));
-  }
-
-  /* Hover effects */
-  .glass-hover {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    @apply shadow-[0.625rem_0.625rem_0.875rem_0_rgb(225,226,228),-0.5rem_-0.5rem_1.125rem_0_rgb(255,255,255)]
+    dark:shadow-[0.625rem_0.625rem_0.875rem_0_rgb(30,30,30)]
+    rounded-xl
+    bg-white dark:bg-gray-800;
   }
 
   .glass-hover:hover {
-    background: hsl(var(--glass-bg));
+    /* background: hsl(var(--glass-bg)); */
     transform: translateY(-2px) scale(1.02);
     box-shadow: 0 15px 35px hsl(var(--primary) / 0.4);
-  }
-
-  .neu-hover {
-    transition: all 0.3s ease;
-  }
-
-  .neu-hover:hover {
-    box-shadow: 
-      12px 12px 24px hsl(var(--neu-shadow-dark)),
-      -12px -12px 24px hsl(var(--neu-shadow-light));
-    transform: translateY(-1px);
   }
 
   /* Gradient text */
@@ -225,8 +229,13 @@ All colors MUST be HSL for proper theme integration.
 
 /* Custom animations */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes fadeInUp {
@@ -274,10 +283,13 @@ All colors MUST be HSL for proper theme integration.
 }
 
 @keyframes morphGlow {
-  0%, 100% { 
-    box-shadow: 0 0 20px hsl(var(--primary) / 0.3), 0 0 40px hsl(var(--primary) / 0.1);
+  0%,
+  100% {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3),
+      0 0 40px hsl(var(--primary) / 0.1);
   }
-  50% { 
-    box-shadow: 0 0 30px hsl(var(--primary) / 0.5), 0 0 60px hsl(var(--primary) / 0.2);
+  50% {
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.5),
+      0 0 60px hsl(var(--primary) / 0.2);
   }
 }
