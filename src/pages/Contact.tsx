@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
+import { motion } from "framer-motion";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -64,10 +65,65 @@ const Contact = () => {
     });
   };
 
+  const slideInLeft = {
+    hidden: { x: -60, opacity: 0 },
+    visible: { 
+      x: 0, 
+      opacity: 1,
+      transition: {
+        type: "spring" as const,
+        stiffness: 100,
+        damping: 20
+      }
+    }
+  };
+
+  const slideInRight = {
+    hidden: { x: 60, opacity: 0 },
+    visible: { 
+      x: 0, 
+      opacity: 1,
+      transition: {
+        type: "spring" as const,
+        stiffness: 100,
+        damping: 20
+      }
+    }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const contactItem = {
+    hidden: { y: 30, opacity: 0 },
+    visible: { 
+      y: 0, 
+      opacity: 1,
+      transition: {
+        type: "spring" as const,
+        stiffness: 100,
+        damping: 20
+      }
+    }
+  };
+
   return (
     <section id="contact" className="py-20 relative">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">
             Get In Touch
           </h2>
@@ -75,18 +131,33 @@ const Contact = () => {
             Have a project in mind? Let's work together to bring your ideas to
             life
           </p>
-        </div>
+        </motion.div>
 
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12">
             {/* Contact Info */}
-            <div className="space-y-6">
+            <motion.div 
+              className="space-y-6"
+              variants={slideInLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.3 }}
+            >
               <Card className="glass glass-hover p-6 border-white/10">
                 <h3 className="text-2xl font-semibold mb-6 text-primary">
                   Let's Connect
                 </h3>
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-4">
+                <motion.div 
+                  className="space-y-4"
+                  variants={staggerContainer}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.5 }}
+                >
+                  <motion.div 
+                    className="flex items-center space-x-4"
+                    variants={contactItem}
+                  >
                     <div className="neu w-12 h-12 rounded-xl flex items-center justify-center">
                       <span className="text-secondary">📧</span>
                     </div>
@@ -94,9 +165,12 @@ const Contact = () => {
                       <p className="font-medium">Email</p>
                       <p className="text-foreground/70">john@example.com</p>
                     </div>
-                  </div>
+                  </motion.div>
 
-                  <div className="flex items-center space-x-4">
+                  <motion.div 
+                    className="flex items-center space-x-4"
+                    variants={contactItem}
+                  >
                     <div className="neu w-12 h-12 rounded-xl flex items-center justify-center">
                       <span className="text-secondary">💼</span>
                     </div>
@@ -104,9 +178,12 @@ const Contact = () => {
                       <p className="font-medium">LinkedIn</p>
                       <p className="text-foreground/70">linkedin.com/in/john</p>
                     </div>
-                  </div>
+                  </motion.div>
 
-                  <div className="flex items-center space-x-4">
+                  <motion.div 
+                    className="flex items-center space-x-4"
+                    variants={contactItem}
+                  >
                     <div className="neu w-12 h-12 rounded-xl flex items-center justify-center">
                       <span className="text-secondary">🐙</span>
                     </div>
@@ -114,62 +191,91 @@ const Contact = () => {
                       <p className="font-medium">GitHub</p>
                       <p className="text-foreground/70">github.com/john</p>
                     </div>
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
               </Card>
-            </div>
+            </motion.div>
 
             {/* Contact Form */}
-            <Card className="glass glass-hover p-6 border-white/10">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <Input
-                    name="name"
-                    placeholder="Your Name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="neu-inset bg-muted/50 border-0 focus:ring-2 focus:ring-primary/50"
-                    required
-                  />
-                </div>
+            <motion.div
+              variants={slideInRight}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.3 }}
+            >
+              <Card className="glass glass-hover p-6 border-white/10">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.8 }}
+                    transition={{ delay: 0.1 }}
+                  >
+                    <Input
+                      name="name"
+                      placeholder="Your Name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="neu-inset bg-muted/50 border-0 focus:ring-2 focus:ring-primary/50"
+                      required
+                    />
+                  </motion.div>
 
-                <div>
-                  <Input
-                    name="email"
-                    type="email"
-                    placeholder="Your Email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="neu-inset bg-muted/50 border-0 focus:ring-2 focus:ring-primary/50"
-                    required
-                  />
-                </div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.8 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    <Input
+                      name="email"
+                      type="email"
+                      placeholder="Your Email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="neu-inset bg-muted/50 border-0 focus:ring-2 focus:ring-primary/50"
+                      required
+                    />
+                  </motion.div>
 
-                <div>
-                  <Textarea
-                    name="message"
-                    placeholder="Your Message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    rows={5}
-                    className="neu-inset bg-muted/50 border-0 focus:ring-2 focus:ring-primary/50 resize-none"
-                    required
-                  />
-                </div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.8 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    <Textarea
+                      name="message"
+                      placeholder="Your Message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      rows={5}
+                      className="neu-inset bg-muted/50 border-0 focus:ring-2 focus:ring-primary/50 resize-none"
+                      required
+                    />
+                  </motion.div>
 
-                <Button
-                  type="submit"
-                  size="lg"
-                  disabled={isSubmitting}
-                  className="w-full glass-strong glass-hover bg-primary/20 hover:bg-primary/30 border-primary/30 hover:scale-105 transition-all duration-300 group relative overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <span className="relative z-10">
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                </Button>
-              </form>
-            </Card>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.8 }}
+                    transition={{ delay: 0.4 }}
+                  >
+                    <Button
+                      type="submit"
+                      size="lg"
+                      disabled={isSubmitting}
+                      className="w-full glass-strong glass-hover bg-primary/20 hover:bg-primary/30 border-primary/30 hover:scale-105 transition-all duration-300 group relative overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <span className="relative z-10">
+                        {isSubmitting ? "Sending..." : "Send Message"}
+                      </span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0 transform -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                    </Button>
+                  </motion.div>
+                </form>
+              </Card>
+            </motion.div>
           </div>
         </div>
       </div>
