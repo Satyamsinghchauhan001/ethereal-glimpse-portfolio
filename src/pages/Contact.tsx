@@ -6,6 +6,12 @@ import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
+import {
+  contactItem,
+  slideInLeft,
+  slideInRight,
+  staggerContainer,
+} from "@/utils";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -23,15 +29,15 @@ const Contact = () => {
     try {
       // Initialize EmailJS (replace with your actual service ID, template ID, and public key)
       await emailjs.send(
-        "service_your_service_id", // Replace with your EmailJS service ID
-        "template_your_template_id", // Replace with your EmailJS template ID
+        "service_o9t7myr", // Replace with your EmailJS service ID
+        "template_tc0c7bi", // Replace with your EmailJS template ID
         {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
-          to_name: "Satyam Singh Chauhan", // Your name
+          to_name: "Satyam Singh Chauhan",
         },
-        "your_public_key" // Replace with your EmailJS public key
+        "pQ3vt7CCtaK7NsBdB"
       );
 
       toast({
@@ -65,59 +71,10 @@ const Contact = () => {
     });
   };
 
-  const slideInLeft = {
-    hidden: { x: -60, opacity: 0 },
-    visible: { 
-      x: 0, 
-      opacity: 1,
-      transition: {
-        type: "spring" as const,
-        stiffness: 100,
-        damping: 20
-      }
-    }
-  };
-
-  const slideInRight = {
-    hidden: { x: 60, opacity: 0 },
-    visible: { 
-      x: 0, 
-      opacity: 1,
-      transition: {
-        type: "spring" as const,
-        stiffness: 100,
-        damping: 20
-      }
-    }
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const contactItem = {
-    hidden: { y: 30, opacity: 0 },
-    visible: { 
-      y: 0, 
-      opacity: 1,
-      transition: {
-        type: "spring" as const,
-        stiffness: 100,
-        damping: 20
-      }
-    }
-  };
-
   return (
     <section id="contact" className="py-20 relative">
       <div className="container mx-auto px-6">
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -136,7 +93,7 @@ const Contact = () => {
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12">
             {/* Contact Info */}
-            <motion.div 
+            <motion.div
               className="space-y-6"
               variants={slideInLeft}
               initial="hidden"
@@ -147,14 +104,14 @@ const Contact = () => {
                 <h3 className="text-2xl font-semibold mb-6 text-primary">
                   Let's Connect
                 </h3>
-                <motion.div 
+                <motion.div
                   className="space-y-4"
                   variants={staggerContainer}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: false, amount: 0.5 }}
                 >
-                  <motion.div 
+                  <motion.div
                     className="flex items-center space-x-4"
                     variants={contactItem}
                   >
@@ -167,7 +124,7 @@ const Contact = () => {
                     </div>
                   </motion.div>
 
-                  <motion.div 
+                  <motion.div
                     className="flex items-center space-x-4"
                     variants={contactItem}
                   >
@@ -180,7 +137,7 @@ const Contact = () => {
                     </div>
                   </motion.div>
 
-                  <motion.div 
+                  <motion.div
                     className="flex items-center space-x-4"
                     variants={contactItem}
                   >
@@ -216,7 +173,7 @@ const Contact = () => {
                       placeholder="Your Name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="neu-inset bg-muted/50 border-0 focus:ring-2 focus:ring-primary/50"
+                      className="neu dark:bg-muted/50 dark:border-0 border-[0.5px] border-blue-00 focus:ring-2 focus:ring-blue-800"
                       required
                     />
                   </motion.div>
@@ -233,7 +190,7 @@ const Contact = () => {
                       placeholder="Your Email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="neu-inset bg-muted/50 border-0 focus:ring-2 focus:ring-primary/50"
+                      className="neu dark:bg-muted/50 dark:border-0 border-[0.5px] border-blue-00 focus:ring-2 focus:ring-blue-800"
                       required
                     />
                   </motion.div>
@@ -250,7 +207,7 @@ const Contact = () => {
                       value={formData.message}
                       onChange={handleInputChange}
                       rows={5}
-                      className="neu-inset bg-muted/50 border-0 focus:ring-2 focus:ring-primary/50 resize-none"
+                      className="neu dark:bg-muted/50 dark:border-0 border-[0.5px] border-blue-00 focus:ring-2 focus:ring-blue-800"
                       required
                     />
                   </motion.div>

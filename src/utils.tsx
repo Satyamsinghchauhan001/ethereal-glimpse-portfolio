@@ -55,3 +55,62 @@ export const titles = [
   "Responsive UI Expert",
   "Modern Design Enthusiast",
 ];
+
+export const slideInLeft = {
+  hidden: { x: -60, opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      type: "spring" as const,
+      stiffness: 100,
+      damping: 20,
+    },
+  },
+};
+
+export const slideInRight = {
+  hidden: { x: 60, opacity: 0 },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      type: "spring" as const,
+      stiffness: 100,
+      damping: 20,
+    },
+  },
+};
+
+export const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+export const contactItem = {
+  hidden: { y: 30, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring" as const,
+      stiffness: 100,
+      damping: 20,
+    },
+  },
+};
+
+export const container = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3,
+    },
+  },
+};
