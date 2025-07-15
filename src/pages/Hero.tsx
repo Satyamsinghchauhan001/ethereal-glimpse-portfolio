@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import HeroAvatar from "./HeroAvatar";
 import CommonButton from "@/components/CommonButton";
-import { titles } from "@/utils";
+import { contactItem, container, slideInRight, titles } from "@/utils";
+import { motion } from "framer-motion";
+
 const Hero = () => {
   const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(true);
@@ -31,62 +33,73 @@ const Hero = () => {
         ></div>
       </div>
 
-      <div className="container mx-auto relative z-10 grid md:grid-cols-2 grid-cols-1 px-5">
+      <motion.div
+        variants={container}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        className="container mx-auto relative z-10 grid md:grid-cols-2 grid-cols-1 px-5"
+      >
         <HeroAvatar />
-        <div className="animate-fade-in-up col-span-1 flex justify-center items-center max-sm:-mt-24">
-          <div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-2 leading-tight ">
-              {"Satyam Singh Chauhan".split("").map((char, i) => (
-                <React.Fragment key={i}>
-                  {char.toLowerCase() === "c" && <br />}
-                  <span
-                    className="inline-block animate-fade-in-up z-50 gradient-text text-shadow opacity-0 sm:pb-2"
-                    style={{
-                      animationDelay: `${i * 0.05}s`,
-                      animationFillMode: "forwards",
-                    }}
-                  >
-                    {char === " " ? "\u00A0" : char}
-                  </span>
-                </React.Fragment>
-              ))}
-            </h1>
-            <div className="text-[21px] md:text-2xl text-foreground/80 mb-8 max-w-2xl mx-auto flex flex-col">
-              <span
-                key={titles[index]}
-                className={`inline-block pr-2 py-2 font-semibold dark:text-accent text-teal-700 transition-all duration-700
-                ${visible ? "animate-slide-in-right" : "animate-slide-in-lef"}`}
-              >
-                {titles[index]}
-              </span>
-              <span className="animate-fade-in-up text-[19px] text-justify">
-                Frontend-focused full stack developer with 6+ years of
-                professional experience delivering responsive, user-centric web
-                and mobile applications. Skilled in React, Next.js, TypeScript,
-                Tailwind CSS, and Firebase. Built scalable systems with SSR,
-                dynamic theming, and real-time features. Proven track record
-                across enterprise (Genpact) and tech-driven (Codeblock)
-                environments.
-              </span>
-            </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 sm:justify-start justify-center animate-slide-in-left">
-              <CommonButton
-                text={"Get In Touch"}
-                variant={"primary"}
-                idName={"contact"}
-                size={"lg"}
-              />
-              <CommonButton
-                text={"View Projects"}
-                variant={"outline"}
-                idName={"projects"}
-                size={"lg"}
-              />
+        <div className="animate-fade-in-up col-span-1 flex justify-center items-center max-sm:-mt-24">
+          <motion.div variants={slideInRight}>
+            <div>
+              <h1 className="text-5xl md:text-7xl font-bold mb-2 leading-tight ">
+                {"Satyam Singh Chauhan".split("").map((char, i) => (
+                  <React.Fragment key={i}>
+                    {char.toLowerCase() === "c" && <br />}
+                    <span
+                      className="inline-block animate-fade-in-up z-50 gradient-text text-shadow opacity-0 sm:pb-2"
+                      style={{
+                        animationDelay: `${i * 0.05}s`,
+                        animationFillMode: "forwards",
+                      }}
+                    >
+                      {char === " " ? "\u00A0" : char}
+                    </span>
+                  </React.Fragment>
+                ))}
+              </h1>
+              <div className="text-[21px] md:text-2xl text-foreground/80 mb-8 max-w-2xl mx-auto flex flex-col">
+                <span
+                  key={titles[index]}
+                  className={`inline-block pr-2 py-2 font-semibold dark:text-accent text-teal-700 transition-all duration-700
+                ${visible ? "animate-slide-in-right" : "animate-slide-in-lef"}`}
+                >
+                  {titles[index]}
+                </span>
+                <motion.div variants={contactItem}>
+                  <span className="animate-fade-in-up text-[19px] text-justify">
+                    Frontend-focused full stack developer with 6+ years of
+                    professional experience delivering responsive, user-centric
+                    web and mobile applications. Skilled in React, Next.js,
+                    TypeScript, Tailwind CSS, and Firebase. Built scalable
+                    systems with SSR, dynamic theming, and real-time features.
+                    Proven track record across enterprise (Genpact) and
+                    tech-driven (Codeblock) environments.
+                  </span>
+                </motion.div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 sm:justify-start justify-center animate-slide-in-left">
+                <CommonButton
+                  text={"Get In Touch"}
+                  variant={"primary"}
+                  idName={"contact"}
+                  size={"lg"}
+                />
+                <CommonButton
+                  text={"View Projects"}
+                  variant={"outline"}
+                  idName={"projects"}
+                  size={"lg"}
+                />
+              </div>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

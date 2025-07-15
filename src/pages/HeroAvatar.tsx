@@ -14,10 +14,15 @@ import android from "/src/assets/logos/android-studio-icon.webp";
 import firebase from "/src/assets/logos/firebase.webp";
 import expo from "/src/assets/logos/expo.png";
 import next from "/src/assets/logos/next.png";
+import { motion } from "framer-motion";
+import { slideInLeft } from "@/utils";
 
 const HeroAvatar = () => {
   return (
-    <div className="col-span-1 animate-fade-in-up relative flex justify-center items-center">
+    <motion.div
+      className="col-span-1 animate-fade-in-up relative flex justify-center items-center "
+      variants={slideInLeft}
+    >
       {/* Tech Logos - Left Side (Before) */}
       <div
         className="absolute left-[40px] top-1/4 animate-float max-sm:left-0 max-sm:top-[15%]"
@@ -116,7 +121,7 @@ const HeroAvatar = () => {
       >
         <img src={next} className="w-8 h-6` " alt="CSS" />
       </div>
-    </div>
+    </motion.div>
   );
 };
 
