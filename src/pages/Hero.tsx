@@ -38,14 +38,14 @@ const Hero = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
-        className="container mx-auto relative z-10 grid md:grid-cols-2 grid-cols-1 px-5"
+        className="container mx-auto relative z-10 grid md:grid-cols-2 grid-cols-1 px-4 md:px-5 gap-8 md:gap-0"
       >
         <HeroAvatar />
 
-        <div className="animate-fade-in-up col-span-1 flex justify-center items-center max-sm:-mt-24">
+        <div className="animate-fade-in-up col-span-1 flex justify-center items-center mt-8 md:mt-0 max-sm:-mt-12">
           <motion.div variants={slideInRight}>
             <div>
-              <h1 className="text-5xl md:text-7xl font-bold mb-2 leading-tight ">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-2 leading-tight text-center md:text-left">
                 {"Satyam Singh Chauhan".split("").map((char, i) => (
                   <React.Fragment key={i}>
                     {char.toLowerCase() === "c" && <br />}
@@ -61,7 +61,7 @@ const Hero = () => {
                   </React.Fragment>
                 ))}
               </h1>
-              <div className="text-[21px] md:text-2xl text-foreground/80 mb-8 max-w-2xl mx-auto flex flex-col">
+              <div className="text-lg sm:text-xl md:text-2xl text-foreground/80 mb-6 md:mb-8 max-w-2xl mx-auto md:mx-0 flex flex-col text-center md:text-left">
                 <span
                   key={titles[index]}
                   className={`inline-block pr-2 py-2 font-semibold dark:text-accent text-teal-700 transition-all duration-700
@@ -70,7 +70,7 @@ const Hero = () => {
                   {titles[index]}
                 </span>
                 <motion.div variants={contactItem}>
-                  <span className="animate-fade-in-up text-[19px] text-justify">
+                  <span className="animate-fade-in-up text-sm sm:text-base md:text-lg text-justify md:text-left">
                     Frontend-focused full stack developer with 6+ years of
                     professional experience delivering responsive, user-centric
                     web and mobile applications. Skilled in React, Next.js,
@@ -82,7 +82,7 @@ const Hero = () => {
                 </motion.div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 sm:justify-start justify-center animate-slide-in-left">
+              <div className="flex flex-col sm:flex-row gap-3 md:gap-4 sm:justify-start justify-center animate-slide-in-left">
                 <CommonButton
                   text={"Get In Touch"}
                   variant={"primary"}

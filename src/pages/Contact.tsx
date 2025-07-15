@@ -91,7 +91,7 @@ const Contact = () => {
         </motion.div>
 
         <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12">
             {/* Contact Info */}
             <motion.div
               className="space-y-6"
@@ -100,8 +100,8 @@ const Contact = () => {
               whileInView="visible"
               viewport={{ once: false, amount: 0.3 }}
             >
-              <Card className="glass glass-hover p-6 border-white/10">
-                <h3 className="text-2xl font-semibold mb-6 text-primary">
+              <Card className="glass glass-hover p-4 md:p-6 border-white/10">
+                <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6 text-primary">
                   Let's Connect
                 </h3>
                 <motion.div
@@ -160,8 +160,8 @@ const Contact = () => {
               whileInView="visible"
               viewport={{ once: false, amount: 0.3 }}
             >
-              <Card className="glass glass-hover p-6 border-white/10">
-                <form onSubmit={handleSubmit} className="space-y-6">
+              <Card className="glass glass-hover p-4 md:p-6 border-white/10">
+                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
