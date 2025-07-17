@@ -28,7 +28,7 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="py-20 relative">
+    <section id="about" className="pb-10 pt-14 relative">
       <div className="container mx-auto px-6">
         <motion.div
           className="text-center mb-16"
@@ -66,7 +66,10 @@ const About = () => {
             </motion.div>
 
             {/* About Content */}
-            <motion.div className="space-y-4 md:space-y-6" variants={slideInRight}>
+            <motion.div
+              className="space-y-4 md:space-y-6"
+              variants={slideInRight}
+            >
               <motion.div variants={slideInRight}>
                 <Card className="glass glass-hover p-4 md:p-6 border-white/10 hover:border-secondary/30 transition-all duration-500">
                   <h3 className="text-xl md:text-2xl font-semibold mb-3 md:mb-4 text-secondary ">

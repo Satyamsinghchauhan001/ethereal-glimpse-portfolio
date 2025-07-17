@@ -5,26 +5,34 @@ const CommonButton = ({
   variant,
   idName,
   size,
+  onClick,
 }: {
-  text: string;
+  text?: string;
   variant: "primary" | "outline";
-  idName: string;
+  idName?: string;
   size: "lg" | "sm" | "default" | "icon";
+  onClick?: () => void;
 }) => {
   return (
     <>
       <Button
         size={size}
-        className={`"glass-hover glass-hover text-lg px-8 py-3 hover:scale-105 transition-all duration-300 group relative overflow-hidden ${
+        className={`"dark:glass-hover text-lg px-8 py-3 hover:scale-105 transition-all duration-300 group relative overflow-hidden ${
+          size === "sm" && "text-sm px-4 py-0"
+        } ${
           variant === "primary"
-            ? "glass-strong bg-primary/20 hover:bg-primary/30 border-primary/30"
-            : "glass border-white/20 hover:bg-white/10 "
+            ? "dark:glass-strong dark:bg-primary/20 dark:hover:bg-primary/30 dark:border-primary/30 border border-blue-400 text-black dark:text-white  hover:bg-transparent bg-transparent"
+            : "dark:glass border-white/20 dark:hover:bg-white/10 "
         }`}
-        onClick={() =>
-          document
-            .getElementById(idName)
-            ?.scrollIntoView({ behavior: "smooth" })
-        }
+        onClick={() => {
+          if (onClick) {
+            onClick();
+          } else if (idName) {
+            document
+              .getElementById(idName)
+              ?.scrollIntoView({ behavior: "smooth" });
+          }
+        }}
       >
         <span className="relative z-10">{text}</span>
 

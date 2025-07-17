@@ -1,29 +1,33 @@
+import Portfolio1 from "./assets/projects/portfolio1.png";
+import Portfolio2 from "./assets/projects/portfolio2.png";
+import Portfolio3 from "./assets/projects/portfolio3.png";
+import help1 from "./assets/projects/help1.png";
+import help2 from "./assets/projects/help2.png";
+import help3 from "./assets/projects/help3.png";
+import help4 from "./assets/projects/help4.png";
+import help5 from "./assets/projects/help5.png";
+import help6 from "./assets/projects/help6.png";
+
 export const projects = [
   {
-    id: 1,
-    name: "E-Commerce Platform",
-    description: "A full-stack e-commerce solution with React and Node.js",
-    tech: ["React", "Node.js", "MongoDB", "Stripe"],
-    github: "https://github.com",
-    live: "https://example.com",
+    id: "1",
+    title: "Old Portfolio",
+    description:
+      "This portfolio was made by me just to see what i have learn design part in my early days",
+    techUsed: ["React", "Html", "CSS"],
+    gitHubLink: "",
+    liveLink: "https://merry-marshmallow-e96507.netlify.app/",
+    images: [Portfolio1, Portfolio2, Portfolio3],
   },
   {
-    id: 2,
-    name: "Task Management App",
+    id: "2",
+    title: "Old Portfolio",
     description:
-      "A collaborative task management application with real-time updates",
-    tech: ["React", "TypeScript", "Socket.io", "PostgreSQL"],
-    github: "https://github.com",
-    live: "https://example.com",
-  },
-  {
-    id: 3,
-    name: "Weather Dashboard",
-    description:
-      "A responsive weather application with location-based forecasts",
-    tech: ["React", "API Integration", "Tailwind CSS"],
-    github: "https://github.com",
-    live: "https://example.com",
+      "This portfolio was made by me just to see what i have learn design part in my early days",
+    techUsed: ["React", "Html", "CSS"],
+    gitHubLink: "",
+    liveLink: "https://merry-marshmallow-e96507.netlify.app/",
+    images: [help1, help2, help3, help4, help5, help6],
   },
 ];
 

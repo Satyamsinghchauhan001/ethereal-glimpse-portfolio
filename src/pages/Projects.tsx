@@ -7,21 +7,11 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { useEffect, useState } from "react";
-import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import CommonButton from "@/components/CommonButton";
+import { useNavigate } from "react-router-dom";
 
 const Projects = () => {
-  // Project images for carousel
-  const projectImages = [
-    "photo-1488590528505-98d2b5aba04b",
-    "photo-1461749280684-dccba630e2f6",
-    "photo-1581091226825-a6a2a5aee158",
-    "photo-1486312338219-ce68d2c6f44d",
-    "photo-1531297484001-80022131f5a1",
-    "photo-1487058792275-0ad4aaf24ca7",
-  ];
-
   const container = {
     hidden: { opacity: 0 },
     visible: {
@@ -46,7 +36,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="py-20 relative">
+    <section id="projects" className="pb-10 pt-14 relative">
       <div className="container mx-auto px-6">
         <motion.div
           className="text-center mb-16"
@@ -82,19 +72,19 @@ const Projects = () => {
                     }}
                     plugins={[
                       Autoplay({
-                        delay: 3000 + index * 500, // Stagger autoplay for different cards
+                        delay: 3000 + index * 500,
                         stopOnInteraction: false,
                       }),
                     ]}
                     className="w-full h-full"
                   >
                     <CarouselContent className="h-full">
-                      {projectImages.slice(0, 3).map((image, imgIndex) => (
+                      {project.images.map((image, imgIndex) => (
                         <CarouselItem key={imgIndex} className="h-full">
                           <div className="relative h-full">
                             <img
-                              src={`https://images.unsplash.com/${image}?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80`}
-                              alt={`${project.name} preview ${imgIndex + 1}`}
+                              src={image}
+                              alt={`${project.title} preview ${imgIndex + 1}`}
                               className="w-full h-full object-cover"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
@@ -113,7 +103,7 @@ const Projects = () => {
                       variants={contactItem}
                     >
                       <h3 className="text-xl font-semibold mb-3 text-primary">
-                        {project.name}
+                        {project.title}
                       </h3>
                     </motion.div>
                     <motion.div
@@ -130,7 +120,7 @@ const Projects = () => {
                           Tech Used:
                         </h4>
                         <div className="flex flex-wrap gap-2">
-                          {project.tech.map((tech) => (
+                          {project.techUsed.map((tech) => (
                             <span
                               key={tech}
                               className="neu px-3 py-1 rounded-lg text-xs"
@@ -148,26 +138,23 @@ const Projects = () => {
                       className="flex items-center space-x-4"
                       variants={contactItem}
                     >
-                      <Button
+                      <CommonButton
+                        text="GitHub"
+                        variant="primary"
                         size="sm"
-                        variant="outline"
-                        className="flex-1 glass border-white/20 hover:bg-white/10"
-                        onClick={() => window.open(project.github, "_blank")}
-                      >
-                        GitHub
-                      </Button>
+                        onClick={() => window.open(`${project.gitHubLink}`)}
+                      />
                     </motion.div>
                     <motion.div
                       className="flex items-center space-x-4"
                       variants={contactItem}
                     >
-                      <Button
+                      <CommonButton
+                        text="Live Demo"
+                        variant="outline"
                         size="sm"
-                        className="flex-1 bg-primary/20 hover:bg-primary/30 border-primary/30"
-                        onClick={() => window.open(project.live, "_blank")}
-                      >
-                        Live Demo
-                      </Button>
+                        onClick={() => window.open(`${project.liveLink}`)}
+                      />
                     </motion.div>
                   </div>
                 </div>

@@ -42,10 +42,10 @@ const Hero = () => {
       >
         <HeroAvatar />
 
-        <div className="animate-fade-in-up col-span-1 flex justify-center items-center mt-8 md:mt-0 max-sm:-mt-12">
+        <div className="animate-fade-in-up col-span-1 flex justify-center items-center mt-8 md:mt-0 max-sm:-mt-28  max-sm:mb-4">
           <motion.div variants={slideInRight}>
             <div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mb-2 leading-tight text-center md:text-left">
+              <h1 className="text-5xl lg:text-7xl font-bold mb-2 leading-tight text-center md:text-left">
                 {"Satyam Singh Chauhan".split("").map((char, i) => (
                   <React.Fragment key={i}>
                     {char.toLowerCase() === "c" && <br />}
@@ -61,16 +61,19 @@ const Hero = () => {
                   </React.Fragment>
                 ))}
               </h1>
-              <div className="text-lg sm:text-xl md:text-2xl text-foreground/80 mb-6 md:mb-8 max-w-2xl mx-auto md:mx-0 flex flex-col text-center md:text-left">
+              <div className=" md:text-2xl text-foreground/80 mb-6 md:mb-8 max-w-2xl mx-auto md:mx-0 flex flex-col md:text-left ">
                 <span
                   key={titles[index]}
-                  className={`inline-block pr-2 py-2 font-semibold dark:text-accent text-teal-700 transition-all duration-700
-                ${visible ? "animate-slide-in-right" : "animate-slide-in-lef"}`}
+                  className={`inline-block max-sm:text-center pr-2 py-2 text-xl font-semibold dark:text-accent text-teal-700 transition-all duration-700
+                ${visible && "animate-slide-in-right"}`}
                 >
                   {titles[index]}
                 </span>
-                <motion.div variants={contactItem}>
-                  <span className="animate-fade-in-up text-sm sm:text-base md:text-lg text-justify md:text-left">
+                <motion.div
+                  variants={contactItem}
+                  className="text-justify  dark:text-white text-black"
+                >
+                  <span className="animate-fade-in-up  text-[16px]  md:text-left">
                     Frontend-focused full stack developer with 6+ years of
                     professional experience delivering responsive, user-centric
                     web and mobile applications. Skilled in React, Next.js,

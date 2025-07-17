@@ -72,7 +72,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 relative">
+    <section id="contact" className="py-10 relative">
       <div className="container mx-auto px-6">
         <motion.div
           className="text-center mb-16"
@@ -161,7 +161,10 @@ const Contact = () => {
               viewport={{ once: false, amount: 0.3 }}
             >
               <Card className="glass glass-hover p-4 md:p-6 border-white/10">
-                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-4 md:space-y-6"
+                >
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
