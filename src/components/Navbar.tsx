@@ -11,8 +11,8 @@ const Navbar = () => {
             Portfolio
           </div>
           <div className="flex items-center space-x-8">
-            {routes.map((r) => (
-              <div className="hidden md:flex space-x-8">
+            {routes.map((r, i) => (
+              <div className="hidden md:flex space-x-8" key={i}>
                 <a
                   href={r.path}
                   className="text-foreground/80 hover:text-primary transition-all duration-300 hover:scale-110 relative group"

@@ -47,7 +47,7 @@ const Hero = () => {
             <div>
               <h1 className="text-5xl lg:text-7xl font-bold mb-2 leading-tight text-center md:text-left">
                 {"Satyam Singh Chauhan".split("").map((char, i) => (
-                  <React.Fragment key={i}>
+                  <div key={i} className="inline">
                     {char.toLowerCase() === "c" && <br />}
                     <span
                       className="inline-block animate-fade-in-up z-50 gradient-text text-shadow opacity-0 sm:pb-2"
@@ -58,7 +58,7 @@ const Hero = () => {
                     >
                       {char === " " ? "\u00A0" : char}
                     </span>
-                  </React.Fragment>
+                  </div>
                 ))}
               </h1>
               <div className=" md:text-2xl text-foreground/80 mb-6 md:mb-8 max-w-2xl mx-auto md:mx-0 flex flex-col md:text-left ">

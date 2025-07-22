@@ -7,6 +7,11 @@ import help3 from "./assets/projects/help3.png";
 import help4 from "./assets/projects/help4.png";
 import help5 from "./assets/projects/help5.png";
 import help6 from "./assets/projects/help6.png";
+import client1 from "./assets/projects/client1.png";
+import client2 from "./assets/projects/client2.png";
+import client3 from "./assets/projects/client3.png";
+import client4 from "./assets/projects/client4.png";
+import client5 from "./assets/projects/client5.png";
 
 export const projects = [
   {
@@ -21,14 +26,52 @@ export const projects = [
   },
   {
     id: "2",
-    title: "Old Portfolio",
+    title: "Local Help",
     description:
-      "This portfolio was made by me just to see what i have learn design part in my early days",
-    techUsed: ["React", "Html", "CSS"],
+      "This is my personal project : LocalHelp is a real-time, location-based platform connecting users who need urgent help with nearby helpers in their community. Whether it's a medical emergency, a flat tire, or a quick local query, users can broadcast requests that others in the area instantly see. The app uses GPS to match people within specific sectors or villages, enabling fast and relevant support. It's like Uber, but for local assistance — powered by community. ",
+    techUsed: [
+      "React",
+      "Html",
+      "CSS",
+      "tailwind",
+      "vite",
+      "javascript",
+      "typescript",
+      "postgres",
+    ],
     gitHubLink: "",
-    liveLink: "https://merry-marshmallow-e96507.netlify.app/",
+    liveLink: "https://localhelpsite.netlify.app/",
     images: [help1, help2, help3, help4, help5, help6],
   },
+  {
+    id: "3",
+    title: "Clients marketing site",
+    description:
+      "Client was in urgency to make a marketing site for his project so i build this static website just under 2 days with pixel perfect responsive design",
+    techUsed: [
+      "React",
+      "Html",
+      "CSS",
+      "tailwind",
+      "cookies",
+      "vite",
+      "javascript",
+      "typescript",
+      "Daisy ui",
+    ],
+    gitHubLink: "",
+    liveLink: "https://dashing-sprite-d874b7.netlify.app/",
+    images: [client1, client2, client3, client4, client5],
+  },
+  // {
+  //   id: "4",
+  //   title: "YoBiz",
+  //   description: "This ",
+  //   techUsed: ["React", "Html", "CSS"],
+  //   gitHubLink: "",
+  //   liveLink: "https://merry-marshmallow-e96507.netlify.app/",
+  //   images: [help1, help2, help3, help4, help5, help6],
+  // },
 ];
 
 export const routes = [

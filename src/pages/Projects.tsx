@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { contactItem, projects } from "@/utils";
 import { motion } from "framer-motion";
@@ -9,7 +8,6 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import CommonButton from "@/components/CommonButton";
-import { useNavigate } from "react-router-dom";
 
 const Projects = () => {
   const container = {
@@ -110,7 +108,7 @@ const Projects = () => {
                       className="flex items-center space-x-4"
                       variants={contactItem}
                     >
-                      <p className="text-foreground/70 mb-4 leading-relaxed">
+                      <p className="text-foreground/70 mb-4 leading-relaxed max-h-24 overflow-scroll">
                         {project.description}
                       </p>
                     </motion.div>
@@ -135,14 +133,15 @@ const Projects = () => {
 
                   <div className="flex gap-3 mt-auto">
                     <motion.div
-                      className="flex items-center space-x-4"
+                      className="flex items-center space-x-4 tooltip"
                       variants={contactItem}
+                      data-tip="ask permission"
                     >
                       <CommonButton
                         text="GitHub"
                         variant="primary"
                         size="sm"
-                        onClick={() => window.open(`${project.gitHubLink}`)}
+                        onClick={() => {}}
                       />
                     </motion.div>
                     <motion.div

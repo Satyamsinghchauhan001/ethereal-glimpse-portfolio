@@ -20,6 +20,7 @@ const Contact = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  console.log("formdata", formData);
 
   const { toast } = useToast();
   const handleSubmit = async (e: React.FormEvent) => {
@@ -32,8 +33,8 @@ const Contact = () => {
         "service_o9t7myr", // Replace with your EmailJS service ID
         "template_tc0c7bi", // Replace with your EmailJS template ID
         {
-          from_name: formData.name,
-          from_email: formData.email,
+          name: formData.name,
+          email: formData.email,
           message: formData.message,
           to_name: "Satyam Singh Chauhan",
         },
