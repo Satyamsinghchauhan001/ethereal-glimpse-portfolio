@@ -93,6 +93,8 @@ export const techStack = [
   "firebase",
   "expo",
   "NativeWind",
+  "ionic",
+  "capacitor",
 ];
 
 export const titles = [
